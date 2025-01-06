@@ -2,18 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-//import model Post
 use App\Models\Post;
-
 use App\Http\Controllers\Controller;
-
-//import resource PostResource
 use App\Http\Resources\PostResource;
-
-//import Http request
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-//import facade Validator
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller

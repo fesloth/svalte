@@ -22,6 +22,14 @@
         //call method "fetchDataPosts"
         fetchDataPosts();
     });
+
+    //method "deletePost"
+    const deletePost = async (id) => {
+        await axios.delete(`http://localhost:8000/api/posts/${id}`).then(() => {
+            //call method "fetchDataPosts"
+            fetchDataPosts();
+        });
+    };
 </script>
 
 <div class="border-0 shadow-sm card rounded-3">
@@ -45,12 +53,11 @@
                 {#each posts as post}
                     <tr>
                         <td class="text-center">
+                            <!-- svelte-ignore a11y-missing-attribute -->
                             <img
-                                src={`http://localhost:8000/storage/app//private/public/posts/${post.image}`}
+                                src={`${post.image}`}
                                 width="150"
                                 class="rounded-3"
-                                on:load={() =>
-                                    console.log("Gambar dimuat:", post.image)}
                             />
                         </td>
                         <td>{post.title}</td>
@@ -61,6 +68,11 @@
                                 href={`/posts/edit/${post.id}`}
                                 class="mb-3 border-0 shadow-sm btn btn-sm btn-primary"
                                 >EDIT</a
+                            >
+                            <button
+                                on:click={() => deletePost(post.id)}
+                                class="mb-3 border-0 shadow-sm btn btn-sm btn-danger"
+                                >DELETE</button
                             >
                         </td>
                     </tr>
